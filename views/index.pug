@@ -1,0 +1,9 @@
+extend layout.pug 
+
+block content
+  p Post a code
+  form(action="" id="post-form" method="POST")
+    textarea(rows = '10' columns = '700' type="text" name="text" form='post-form' id="text" required)
+    input(type="submit")
+  div(id="posts")
+  script(src="/javascripts/index.js")

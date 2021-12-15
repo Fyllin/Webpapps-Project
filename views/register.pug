@@ -1,0 +1,13 @@
+extends layout
+
+block content
+  h1 Register
+  div(id="error" class="card-panel")
+  form(action="/api/user/register" id="login-form" method="POST")
+    label(for="username") Username
+    input(type="username" name="username" id="username" required)
+    label(for="password") Password 
+    input(type="password" name="password" id="password" required)
+    input(type="submit")
+
+  
