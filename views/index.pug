@@ -1,9 +1,7 @@
-extend layout.pug 
 
 block content
-  p Post a code
-  form(action="" id="post-form" method="POST")
-    textarea(rows = '10' columns = '700' type="text" name="text" form='post-form' id="text" required)
-    input(type="submit")
-  div(id="posts")
+  p Please log in to post your own codes.
+  div(id="posts" class="container")
   script(src="/javascripts/index.js")
+  script(src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.3.1/highlight.min.js")
+    <script>hljs.initHighlightOnLoad();</script>

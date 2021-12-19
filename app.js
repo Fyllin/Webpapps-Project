@@ -8,10 +8,12 @@ var logger = require('morgan');
 const mongoose = require("mongoose");
 const mongoDB = process.env.MONGO_URL || "mongodb://localhost:27017/postdb";
 
+
 var indexRouter = require('./routes/index');
-var usersRouter = require('./routes/users');
 var apiPostRouter = require('./api/posting');
 var apiUsersRouter = require('./api/user');
+var apiAuthRouter = require('./api/auth');
+var apiHighlightRouter = require('./api/highlighting');
 
 var app = express();
 
@@ -26,9 +28,10 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
-app.use('/users', usersRouter);
 app.use('/api/user', apiUsersRouter);
 app.use('/api/posting', apiPostRouter);
+app.use('/api/auth', apiAuthRouter);
+app.use('/api/highlighting', apiHighlightRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

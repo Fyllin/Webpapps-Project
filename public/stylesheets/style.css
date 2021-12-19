@@ -6,3 +6,12 @@ body {
 a {
   color: #00B7FF;
 }
+
+p {
+  white-space: pre-wrap;
+}
+
+.codeblock {
+  color :blueviolet;
+  white-space: pre-wrap;
+}

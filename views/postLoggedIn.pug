@@ -1,0 +1,10 @@
+block content
+    h1(id = "title")
+    p(id = "text")
+    h2(id = "commentcount")
+    p Post a comment
+    form(action="" id="comment-form" method="POST")
+        textarea(rows = '10' columns = '700' type="text" name="text" form='comment-form' id="text" required)
+        input(type="submit")
+    div(id = "comments" postid = pid class="container")
+    script(src="/javascripts/post.js" postid = pid)

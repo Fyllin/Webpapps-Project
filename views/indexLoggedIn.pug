@@ -1,0 +1,19 @@
+
+block content
+  p Post a code
+  div(class="row")
+    form(action="" id="post-form" method="POST" class="col s12")
+
+      div(class="row")
+        div(class="input-field col s8 l4")
+          label(for="title" class="active") Title
+          input(name="title" id="title")
+          
+   
+      div(class="row")
+        div(class="input-field col s12")
+          label(for="text") Code
+          textarea(class="materialize-textarea" name="text" form='post-form' id="text" required)
+        
+      button(class="waves-effect waves-light btn" type="submit") Submit
+  div(id="posts" class="container")

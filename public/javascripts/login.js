@@ -8,10 +8,9 @@ if (document.readyState !== "loading") {
   
   function initializeCodeLogin() {
     document.getElementById("login-form").addEventListener("submit", onSubmit);
-    console.log("jou");
 }
-console.log("jou3");
 
+//Basic POST login
 function onSubmit(event) {
     console.log("jou2");
     event.preventDefault();

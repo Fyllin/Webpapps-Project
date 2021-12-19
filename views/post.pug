@@ -1,9 +1,10 @@
-html 
-  head 
-    title jou
-    link(rel='stylesheet', href='/stylesheets/style.css')
-  body
-    h1= user
-    p= text 
-    h2= 'Comments: ' + commentCount 
-    p= id
+
+block content
+    h1(id = "title")
+    p(id = "text")
+    h2(id = "commentcount")
+    div(id = "comments" postid = pid class="container")
+    h3= pid
+    
+
+    script(src="/javascripts/post.js")

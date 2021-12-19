@@ -16,9 +16,10 @@ const upload = multer({storage})
 
 
 
-
+//Basic account making
 router.post("/register",
   body("password")
+  //Funny regex, basically must be atleast 8 characters, have 1 capital, number and symbol
   .matches(/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[~`!@#\$%\^&\*\(\)\-_\+={}\[\]\|\;:"<>,\.\/\?\\]).{8,}$/, "i"),
  (req, res , next) => {
 
@@ -32,15 +33,13 @@ router.post("/register",
       return res.status(400).json({ errors: errors.array() });
     }
 
-    User.findOne({email: req.body.username}, (err,user) => {
-
-
-
+    
+    User.findOne({username: req.body.username}, (err,user) => {
         if(err) throw err;
 
         if(user){
 
-            return res.status(403).json({email: "email exist"});
+            return res.status(403).json({username: "username exist"});
 
         } else {
 
@@ -70,7 +69,6 @@ router.post("/register",
 router.post('/login',
 upload.none(),
   (req, res, next) => {
-    console.log(req.body);
     User.findOne({email: req.body.username}, (err, user) =>{
 
     
@@ -93,8 +91,6 @@ upload.none(),
             id: user._id,
             username: user.username
           }
-          console.log("payload:" + jwtPayload);
-          console.log("secret:" + process.env.SECRET);
           jwt.sign(
             jwtPayload,
             process.env.SECRET,
