@@ -30,7 +30,7 @@ function onSubmit(event) {
                 if (data.message) {
                     document.getElementById("error").innerHTML = data.message;
                 }  else {
-                    document.getElementById("error").innerHTML = "Very strange error!";
+                    document.getElementById("error").innerHTML = "Some error! :o";
                 }
             }
 

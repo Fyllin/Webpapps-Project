@@ -1,8 +1,5 @@
 var express = require('express');
 var router = express.Router();
-const Post = require("../database/Posts");
-const jwt = require("jsonwebtoken");
-const hljs = require('highlight.js');
 
 router.get('/', function(req, res, next) {
 
@@ -27,8 +24,5 @@ router.get('/post/:id', function(req, res, next) {
     res.render('postInit', {pid : req.params.id});
   
 });
-
-
-
 
 module.exports = router;

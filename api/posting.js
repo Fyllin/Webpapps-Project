@@ -69,6 +69,18 @@ router.get("/posts", (req, res, next) => {
     })
 })
 
+router.get("/post/:id", (req, res, next) => {
+    Post.findOne({_id : req.params.id}, (err, post) => {
+        
+        if(err) return next(err);
+        if(post) {
+            return res.json(post);
+        } else {
+            return res.status(404).send("Not found");
+        }
+    })
+})
+
 //Getting the comments for a single post
 router.get("/comments/:id", (req, res, next) => {
     Comment.find({parentPost : req.params.id}, (err, comments) => {

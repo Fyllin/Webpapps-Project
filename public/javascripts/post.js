@@ -39,13 +39,53 @@ function ifLoggedin() {
         if(page != null) {
 
             document.getElementById("content").innerHTML = page;
-            document.getElementById("comment-form").addEventListener("submit", onSubmit);
 
-            let register_logout = document.getElementById("register_logout");
-            register_logout.addEventListener("click", logout);
-            register_logout.innerHTML = "Logout";
-            register_logout.href = "";
-            document.getElementById("login").remove();
+            //A stupid way of changing buttons if the user is logged in
+            try {
+                document.getElementById("comment-form").addEventListener("submit", onSubmit);
+                let register_logout = document.getElementById("register_logout");
+                register_logout.addEventListener("click", logout);
+                register_logout.innerHTML = "Logout";
+                register_logout.href = "";
+                document.getElementById("login").remove();
+
+                register_logout = document.getElementById("hamburger_register_logout");
+                register_logout.addEventListener("click", logout);
+                register_logout.innerHTML = "Logout";
+                register_logout.href = "";
+                document.getElementById("hamburger_login").remove();
+
+            }
+            catch {
+                
+            }
+
+            
+            //Getting the post from database and putting it on the page
+            const postDiv = document.getElementById("code");
+            const title = document.getElementById("title");
+            const user = document.getElementById("user");
+            
+
+            let itemUser = document.createElement("h2");
+            postDiv.classList.add("codeblock");
+
+
+            fetch("http://localhost:3000/api/posting/post/" + postid)
+            .then(response => response.json())
+            .then(data => {
+
+                let postText = data.text;
+                postDiv.insertAdjacentHTML('beforeend', postText);
+                user.appendChild(document.createTextNode("By: " + data.user));
+                title.appendChild(document.createTextNode(data.title));
+
+
+            });
+
+            
+            
+
 
         }
     })
@@ -101,13 +141,13 @@ async function loadComments() {
 
 //Creating comments one at a time
 //Creating elements and chucking stuff into them
-function addNewComment(user, text, commentCount, id) {
+function addNewComment(user, text) {
 
     let postDiv = document.getElementById("comments");
     let newItem = document.createElement("div");
     newItem.classList.add("card-panel");
 
-    let itemUser = document.createElement("h2");
+    let itemUser = document.createElement("h5");
     let itemText = document.createElement("p");
 
     itemUser.appendChild(document.createTextNode(user));
@@ -119,14 +159,6 @@ function addNewComment(user, text, commentCount, id) {
     postDiv.appendChild(newItem);
 
 }
-
-/*
-function getScriptParam() {
-    var scripts = document.getElementsByTagName('script');
-    var lastScript = scripts[scripts.length-1];
-    var scriptName = lastScript;
-    return scriptName.getAttribute('postid')
-}*/
 
 //Self explanatory
 function logout(){

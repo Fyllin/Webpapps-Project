@@ -13,7 +13,6 @@ var indexRouter = require('./routes/index');
 var apiPostRouter = require('./api/posting');
 var apiUsersRouter = require('./api/user');
 var apiAuthRouter = require('./api/auth');
-var apiHighlightRouter = require('./api/highlighting');
 
 var app = express();
 
@@ -31,7 +30,6 @@ app.use('/', indexRouter);
 app.use('/api/user', apiUsersRouter);
 app.use('/api/posting', apiPostRouter);
 app.use('/api/auth', apiAuthRouter);
-app.use('/api/highlighting', apiHighlightRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

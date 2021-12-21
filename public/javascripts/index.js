@@ -35,15 +35,17 @@ function ifLoggedin() {
     .then((response) => response.text())
     .then((page) => {
         if(page != null) {
-            //Changing buttons basically
             document.getElementById("content").innerHTML = page;
-            document.getElementById("post-form").addEventListener("submit", onSubmit);
-            let register_logout = document.getElementById("register_logout");
-            register_logout.addEventListener("click", logout);
-            register_logout.innerHTML = "Logout";
-            register_logout.href = "";
-            document.getElementById("login").remove();
+            
+            //A stupid way of changing buttons if the user is logged in
             try {
+
+                document.getElementById("post-form").addEventListener("submit", onSubmit);
+                let register_logout = document.getElementById("register_logout");
+                register_logout.addEventListener("click", logout);
+                register_logout.innerHTML = "Logout";
+                register_logout.href = "";
+                document.getElementById("login").remove();
 
                 register_logout = document.getElementById("hamburger_register_logout");
                 register_logout.addEventListener("click", logout);
@@ -71,7 +73,7 @@ async function loadPosts() {
             .then(data => {
                 data.forEach(post => {
 
-                    addNewPost(post.user, post.text, post.commentCount, post._id);  
+                    addNewPost(post.title, post.user, post.text, post.commentCount, post._id);  
 
                 });
             });
@@ -102,24 +104,27 @@ async function loadPosts() {
 
 //Creating posts one at a time
 //Creating elements and chucking stuff into them
-function addNewPost(user, text, commentCount, id) {
+function addNewPost(title, user, text, commentCount, id) {
 
     console.log("text: " + text);
     const postDiv = document.getElementById("posts");
     let newItem = document.createElement("div");
     newItem.classList.add("card-panel");
 
-    let itemUser = document.createElement("h2");
+    let itemTitle = document.createElement("h2")
+    let itemUser = document.createElement("h4");
     let itemText = document.createElement("div");
     itemText.classList.add("codeblock");
     let itemCommentCount = document.createElement("a");
 
     itemCommentCount.setAttribute('href', '/post/'+id)
 
-    itemUser.appendChild(document.createTextNode(user));
+    itemTitle.appendChild(document.createTextNode(title))
+    itemUser.appendChild(document.createTextNode("By: " + user));
     itemText.insertAdjacentHTML('beforeend', text);
     itemCommentCount.appendChild(document.createTextNode(commentCount + " comments"));
 
+    newItem.appendChild(itemTitle);
     newItem.appendChild(itemUser);
     newItem.appendChild(itemText);
     newItem.appendChild(itemCommentCount);

@@ -1,6 +1,6 @@
 nav
     div(class="nav-wrapper")
-        a(href="#!" class="brand-logo") Website
+        a(href="/" class="brand-logo") Website
         a(href="#" data-target="hamburger" class="sidenav-trigger")
             i(class="material-icons") menu
         ul(id="nav-mobile" class="right hide-on-med-and-down")
@@ -8,8 +8,8 @@ nav
             li(id='login'): a(href="/login") Login
             li: a(href="/register" id='register_logout') Register
 
-    ul(class="sidenav" id="hamburger")
+ul(class="sidenav" id="hamburger")
         li: a(href="/") Home
         li(id='hamburger_login'): a(href="/login") Login
-        li: a(href="/register" id='hamburger_register_logout') Register
+        li: a(href="/register" id='hamburger_register_logout') Register  
 script(src="/javascripts/menu.js")

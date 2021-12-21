@@ -2,12 +2,22 @@ extends layout
 
 block content
   h1 Register
-  div(id="error" class="card-panel")
-  form(action="/api/user/register" id="login-form" method="POST")
-    label(for="username") Username
-    input(type="username" name="username" id="username" required)
-    label(for="password") Password 
-    input(type="password" name="password" id="password" required)
-    input(type="submit")
+
+  div(class="row")
+    form(action="/api/user/register" id="login-form" method="POST" class="col s12")
+
+      div(class="row")
+        div(class="input-field col s8 l4")
+          label(for="username" class="active") Username
+          input(name="username" id="username")
+
+      div(class="row")
+        div(class="input-field col s8 l4")
+          label(for="password" class="active") Password
+          input(type="password" name="password" id="password")
+          span(class="helper-text" data-error="wrong" data-success="right") The password must be atleast 8 characters long and have atleast 1 number, 1 capital letter and 1 symbol 
+          
+        
+      button(class="waves-effect waves-light btn" type="submit") Submit
 
   

@@ -66,20 +66,16 @@ router.post("/register",
 
 })
 
+//Login authentication and generating the token
 router.post('/login',
 upload.none(),
   (req, res, next) => {
-    User.findOne({email: req.body.username}, (err, user) =>{
-
+    User.findOne({username: req.body.username}, (err, user) =>{
     
     if(err) throw err;
     if(!user) {
-      return res.status(403).json({message: "Login failed"});
+      return res.status(403).json({message: "User not found"});
     } else {
-
-      console.log(req.body.password);
-      console.log(user.password);
-
 
       bcrypt.compare(req.body.password, user.password, (err, isMatch) => {
         if(err) throw err;
@@ -93,7 +89,7 @@ upload.none(),
           }
           jwt.sign(
             jwtPayload,
-            process.env.SECRET,
+            process.env.SECRET || "secret",
             {
               expiresIn: 3000
             },
