@@ -6,7 +6,7 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 const mongoose = require("mongoose");
-const mongoDB = process.env.MONGO_URL || "mongodb://localhost:27017/postdb";
+const mongoDB = process.env.MONGO_URL || "mongodb://127.0.0.1:27017/postdb";
 
 
 var indexRouter = require('./routes/index');

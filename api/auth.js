@@ -87,7 +87,7 @@ router.get('/comment', function(req, res, next) {
     if(token == null) return;
     console.log("Token found");
     console.log(token);
-    jwt.verify(token, process.env.SECRET, (err, user) => {
+    jwt.verify(token, process.env.SECRET || s, (err, user) => {
         if(err) return;
         console.log("verified");
         return user.user;
